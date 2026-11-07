@@ -1,0 +1,198 @@
+{% extends 'panel/base_panel.html' %}
+
+{% block title %}{{ titulo }} | Panel de Configuración{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10 col-xl-9">
+        
+        <!-- Migas de pan / Volver -->
+        <div class="mb-3">
+            <a href="{% url 'catalogo:panel_dashboard' %}" class="text-decoration-none text-muted small d-inline-flex align-items-center gap-1">
+                <i class="bi bi-arrow-left"></i>
+                <span>Volver a la lista de vehículos</span>
+            </a>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+            
+            <!-- Cabecera del formulario -->
+            <div class="card-header bg-dark text-white p-4 border-bottom border-danger border-3">
+                <h3 class="fw-bold mb-1">{{ titulo }}</h3>
+                <p class="text-white-50 small mb-0">{{ subtitulo }}</p>
+            </div>
+
+            <div class="card-body p-4 p-md-5 bg-white">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    <!-- SECCIÓN 1: IDENTIFICACIÓN PRINCIPAL -->
+                    <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                        <i class="bi bi-tag-fill text-danger me-2"></i>1. Datos Principales
+                    </h5>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold small text-secondary">Marca <span class="text-danger">*</span></label>
+                            {{ form.marca }}
+                            {% if form.marca.errors %}<div class="text-danger small mt-1">{{ form.marca.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold small text-secondary">Modelo <span class="text-danger">*</span></label>
+                            {{ form.modelo }}
+                            {% if form.modelo.errors %}<div class="text-danger small mt-1">{{ form.modelo.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold small text-secondary">Año <span class="text-danger">*</span></label>
+                            {{ form.anio }}
+                            {% if form.anio.errors %}<div class="text-danger small mt-1">{{ form.anio.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-secondary">Categoría <span class="text-danger">*</span></label>
+                            {{ form.categoria }}
+                            {% if form.categoria.errors %}<div class="text-danger small mt-1">{{ form.categoria.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-secondary">Precio (ARS/USD)</label>
+                            {{ form.precio }}
+                            <small class="text-muted d-block mt-1">Opcional. Si se deja vacío figurará como "Consultar precio".</small>
+                            {% if form.precio.errors %}<div class="text-danger small mt-1">{{ form.precio.errors.0 }}</div>{% endif %}
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN 2: ESPECIFICACIONES MECÁNICAS -->
+                    <h5 class="fw-bold text-dark border-bottom pb-2 mb-3 mt-4">
+                        <i class="bi bi-gear-wide-connected text-danger me-2"></i>2. Ficha Mecánica
+                    </h5>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-secondary">Motor <span class="text-danger">*</span></label>
+                            {{ form.motor }}
+                            {% if form.motor.errors %}<div class="text-danger small mt-1">{{ form.motor.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-secondary">Combustible <span class="text-danger">*</span></label>
+                            {{ form.combustible }}
+                            {% if form.combustible.errors %}<div class="text-danger small mt-1">{{ form.combustible.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-secondary">Transmisión <span class="text-danger">*</span></label>
+                            {{ form.transmision }}
+                            {% if form.transmision.errors %}<div class="text-danger small mt-1">{{ form.transmision.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-secondary">Tracción <span class="text-danger">*</span></label>
+                            {{ form.traccion }}
+                            {% if form.traccion.errors %}<div class="text-danger small mt-1">{{ form.traccion.errors.0 }}</div>{% endif %}
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN 3: ESTADO Y PUBLICACIÓN -->
+                    <h5 class="fw-bold text-dark border-bottom pb-2 mb-3 mt-4">
+                        <i class="bi bi-sliders text-danger me-2"></i>3. Visibilidad
+                    </h5>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="form-check form-switch p-3 bg-light rounded-3">
+                                {{ form.disponible }}
+                                <label class="form-check-label fw-semibold text-dark ms-2" for="{{ form.disponible.id_for_label }}">
+                                    Disponible para venta en catálogo
+                                </label>
+                                <small class="text-muted d-block ms-2 mt-1">Si está desmarcado, el vehículo se oculta de los clientes.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check form-switch p-3 bg-warning bg-opacity-10 rounded-3 border border-warning">
+                                {{ form.destacado }}
+                                <label class="form-check-label fw-bold text-dark ms-2" for="{{ form.destacado.id_for_label }}">
+                                    <i class="bi bi-star-fill text-warning me-1"></i> Destacar este vehículo
+                                </label>
+                                <small class="text-muted d-block ms-2 mt-1">
+                                    Al marcar este casillero, el auto lucirá el cartel dorado de <strong>DESTACADO</strong> en el catálogo y podrá filtrarse en la categoría de Destacados.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN 4: DESCRIPCIÓN DETALLADA -->
+                    <h5 class="fw-bold text-dark border-bottom pb-2 mb-3 mt-4">
+                        <i class="bi bi-card-text text-danger me-2"></i>4. Descripción Detallada
+                    </h5>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold small text-secondary">Descripción para los clientes <span class="text-danger">*</span></label>
+                        {{ form.descripcion }}
+                        {% if form.descripcion.errors %}<div class="text-danger small mt-1">{{ form.descripcion.errors.0 }}</div>{% endif %}
+                    </div>
+
+                    <!-- SECCIÓN 5: FOTOGRAFÍAS (HASTA 20 FOTOS) -->
+                    <h5 class="fw-bold text-dark border-bottom pb-2 mb-3 mt-4">
+                        <i class="bi bi-images text-danger me-2"></i>5. Fotografías del Vehículo (Hasta 20 fotos)
+                    </h5>
+
+                    <!-- Fotos ya cargadas (en modo edición) -->
+                    {% if vehiculo and imagenes %}
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-secondary d-block">
+                                Fotos actuales cargadas ({{ imagenes|length }} de 20):
+                            </label>
+                            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3">
+                                {% for img in imagenes %}
+                                    <div class="col">
+                                        <div class="card h-100 border shadow-sm position-relative overflow-hidden">
+                                            <img src="{{ img.imagen.url }}" alt="Foto {{ forloop.counter }}" style="height: 120px; object-fit: cover;">
+                                            <div class="card-body p-2 d-flex justify-content-between align-items-center bg-light">
+                                                <span class="badge bg-dark">#{{ forloop.counter }}</span>
+                                                <button type="submit" 
+                                                        formaction="{% url 'catalogo:panel_imagen_eliminar' img.id %}" 
+                                                        formmethod="post" 
+                                                        class="btn btn-sm btn-outline-danger p-1 py-0" 
+                                                        title="Eliminar esta fotografía"
+                                                        onclick="return confirm('¿Seguro que deseas eliminar esta fotografía?');">
+                                                    <i class="bi bi-trash3"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Campo para subir nuevas fotos -->
+                    <div class="p-3 bg-light rounded-3 border mb-4">
+                        <label for="inputImagenes" class="form-label fw-bold text-dark">
+                            <i class="bi bi-cloud-arrow-up-fill text-danger me-1"></i>
+                            {% if vehiculo %}
+                                Subir fotos adicionales (Cupo disponible: {{ cupo_fotos }} fotos)
+                            {% else %}
+                                Subir fotos del vehículo (Selecciona hasta 20 imágenes simultáneas)
+                            {% endif %}
+                        </label>
+                        <input type="file" name="imagenes" id="inputImagenes" multiple accept="image/*" class="form-control form-control-lg">
+                        <small class="text-muted d-block mt-2">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Puedes seleccionar múltiples archivos a la vez manteniendo presionada la tecla <strong>Ctrl</strong> (o seleccionando con el mouse). Formatos recomendados: JPG, PNG, WEBP.
+                        </small>
+                    </div>
+
+                    <!-- BOTONES DE ACCIÓN -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-3 border-top">
+                        <a href="{% url 'catalogo:panel_dashboard' %}" class="btn btn-outline-secondary px-4">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-danger btn-lg px-5 fw-bold shadow-sm">
+                            <i class="bi bi-check-lg me-1"></i> Guardar Vehículo
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

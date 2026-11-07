@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.anio }} | Automóviles Santillán{% endblock %}
+
+{% block content %}
+<div class="container my-3">
+
+    <!-- Navegación de migas de pan (Breadcrumbs) -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb bg-white p-3 rounded-3 shadow-sm border">
+            <li class="breadcrumb-item"><a href="{% url 'catalogo:lista_vehiculos' %}" class="text-decoration-none text-danger fw-semibold"><i class="bi bi-house-door-fill me-1"></i>Catálogo</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'catalogo:lista_vehiculos' %}?categoria={{ vehiculo.categoria|urlencode }}" class="text-decoration-none text-secondary">{{ vehiculo.categoria }}</a></li>
+            <li class="breadcrumb-item active text-dark fw-bold" aria-current="page">{{ vehiculo.marca }} {{ vehiculo.modelo }} ({{ vehiculo.anio }})</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        
+        <!-- COLUMNA IZQUIERDA: Carrusel de Bootstrap 5 con Iteración Automática -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                
+                {% if imagenes %}
+                    <!-- CARRUSEL BOOTSTRAP 5 CON ITERACIÓN AUTOMÁTICA -->
+                    <div id="carouselVehiculo" class="carousel slide carousel-fade carousel-detalle" data-bs-ride="carousel" data-bs-interval="3500" data-bs-pause="hover">
+                        
+                        <!-- Indicadores inferiores -->
+                        <div class="carousel-indicators">
+                            {% for img in imagenes %}
+                                <button type="button" 
+                                        data-bs-target="#carouselVehiculo" 
+                                        data-bs-slide-to="{{ forloop.counter0 }}" 
+                                        class="{% if forloop.first %}active{% endif %}" 
+                                        aria-current="{% if forloop.first %}true{% endif %}" 
+                                        aria-label="Foto {{ forloop.counter }}">
+                                </button>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Slides de Fotos -->
+                        <div class="carousel-inner">
+                            {% for img in imagenes %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <img src="{{ img.imagen.url }}" class="d-block w-100" alt="{{ vehiculo.marca }} {{ vehiculo.modelo }} - Foto {{ forloop.counter }}">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded-pill px-3 py-1 mb-2">
+                                        <small class="text-white fw-semibold">
+                                            <i class="bi bi-camera me-1"></i> Foto {{ forloop.counter }} de {{ imagenes|length }}
+                                        </small>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Flechas de navegación -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselVehiculo" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselVehiculo" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+                    </div>
+
+                    <!-- Miniaturas debajo del carrusel para navegación rápida -->
+                    {% if imagenes|length > 1 %}
+                        <div class="p-3 bg-white border-top d-flex gap-2 overflow-x-auto">
+                            {% for img in imagenes %}
+                                <button type="button" 
+                                        class="btn p-0 border rounded overflow-hidden flex-shrink-0" 
+                                        style="width: 70px; height: 50px;" 
+                                        onclick="const c = bootstrap.Carousel.getOrCreateInstance('#carouselVehiculo'); c.to({{ forloop.counter0 }});">
+                                    <img src="{{ img.imagen.url }}" class="w-100 h-100 object-fit-cover" alt="Miniatura {{ forloop.counter }}">
+                                </button>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                {% else %}
+                    <!-- Caso sin imágenes -->
+                    <div class="carousel-detalle d-flex flex-column justify-content-center align-items-center text-secondary py-5" style="height: 420px;">
+                        <i class="bi bi-camera-fill display-1 mb-3 text-secondary"></i>
+                        <h5 class="text-white">Sin fotografías cargadas</h5>
+                        <p class="text-white-50 small">Próximamente fotos disponibles de esta unidad.</p>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <!-- DESCRIPCIÓN DETALLADA -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+                <h4 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-card-text text-danger"></i>
+                    <span>Descripción Detallada</span>
+                </h4>
+                <div class="text-secondary lh-lg fs-6" style="white-space: pre-line;">
+                    {{ vehiculo.descripcion }}
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: Ficha Técnica Completa y Contacto -->
+        <div class="col-lg-5">
+            <div class="sticky-top" style="top: 100px; z-index: 10;">
+                
+                <!-- Encabezado de la Unidad -->
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4 position-relative overflow-hidden {% if vehiculo.destacado %}border-top border-warning border-4{% endif %}">
+                    
+                    {% if vehiculo.destacado %}
+                        <div class="mb-3">
+                            <span class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill d-inline-flex align-items-center gap-1 shadow-sm fs-7">
+                                <i class="bi bi-star-fill"></i> VEHÍCULO DESTACADO
+                            </span>
+                        </div>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-danger rounded-pill px-3 py-2 fw-bold text-uppercase">
+                            {{ vehiculo.categoria }}
+                        </span>
+                        <span class="badge bg-dark rounded-pill px-3 py-2 fw-bold">
+                            Año {{ vehiculo.anio }}
+                        </span>
+                    </div>
+
+                    <h2 class="fw-bold text-dark mb-2 mt-1">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h2>
+                    <p class="text-muted small mb-3"><i class="bi bi-shield-check text-success me-1"></i> Unidad inspeccionada y lista para transferir</p>
+
+                    {% if vehiculo.precio %}
+                        <div class="bg-light rounded-3 p-3 mb-4">
+                            <span class="text-muted small d-block">Precio de lista:</span>
+                            <span class="display-6 fw-bold text-danger">$ {{ vehiculo.precio|floatformat:2 }}</span>
+                        </div>
+                    {% else %}
+                        <div class="bg-light rounded-3 p-3 mb-4">
+                            <span class="text-muted small d-block">Condición comercial:</span>
+                            <span class="fs-4 fw-bold text-dark">Consultar precio y financiación</span>
+                        </div>
+                    {% endif %}
+
+                    <!-- Ficha Técnica Completa -->
+                    <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">
+                        <i class="bi bi-gear-wide-connected text-danger me-2"></i>Ficha Técnica
+                    </h5>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped align-middle mb-4">
+                            <tbody>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2" style="width: 40%;"><i class="bi bi-tag me-2 text-danger"></i>Marca</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.marca }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-car-front me-2 text-danger"></i>Modelo</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.modelo }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-calendar3 me-2 text-danger"></i>Año</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.anio }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-cpu me-2 text-danger"></i>Motor</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.motor }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-gear me-2 text-danger"></i>Transmisión</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.transmision }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-compass me-2 text-danger"></i>Tracción</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.traccion }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-fuel-pump me-2 text-danger"></i>Combustible</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.combustible }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted fw-semibold py-2"><i class="bi bi-grid me-2 text-danger"></i>Categoría</th>
+                                    <td class="fw-bold text-dark">{{ vehiculo.categoria }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Botones de Acción y Contacto -->
+                    <div class="d-grid gap-2">
+                        <a href="https://wa.me/5491123456789?text=Hola,%20estoy%20interesado%20en%20el%20veh%C3%ADculo%20{{ vehiculo.marca|urlencode }}%20{{ vehiculo.modelo|urlencode }}%20({{ vehiculo.anio }})%20que%20vi%20en%20su%20cat%C3%A1logo." 
+                           target="_blank" 
+                           class="btn btn-success btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 shadow-sm">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                            <span>Consultar por WhatsApp</span>
+                        </a>
+
+                        <a href="tel:+541145678900" class="btn btn-outline-dark fw-semibold d-flex justify-content-center align-items-center gap-2">
+                            <i class="bi bi-telephone-fill"></i>
+                            <span>Llamar a un asesor comercial</span>
+                        </a>
+
+                        <a href="{% url 'catalogo:lista_vehiculos' %}" class="btn btn-link text-secondary text-decoration-none mt-2">
+                            <i class="bi bi-arrow-left me-1"></i> Volver al catálogo completo
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VEHÍCULOS RELACIONADOS -->
+    {% if relacionados %}
+        <div class="mt-5 pt-3">
+            <h4 class="fw-bold text-dark mb-4">Otras opciones en {{ vehiculo.categoria }}</h4>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for rel in relacionados %}
+                    <div class="col">
+                        <div class="card h-100 card-vehiculo shadow-sm">
+                            <div class="card-img-wrapper" style="height: 180px;">
+                                {% if rel.primera_imagen and rel.primera_imagen.imagen %}
+                                    <img src="{{ rel.primera_imagen.imagen.url }}" alt="{{ rel.marca }} {{ rel.modelo }}">
+                                {% else %}
+                                    <div class="w-100 h-100 d-flex justify-content-center align-items-center bg-dark text-secondary">
+                                        <i class="bi bi-camera"></i>
+                                    </div>
+                                {% endif %}
+                                <span class="badge-anio">{{ rel.anio }}</span>
+                            </div>
+                            <div class="card-body p-3">
+                                <h6 class="fw-bold text-dark mb-1">{{ rel.marca }} {{ rel.modelo }}</h6>
+                                <p class="text-muted small mb-2">{{ rel.motor }} | {{ rel.combustible }}</p>
+                                <a href="{{ rel.get_absolute_url }}" class="btn btn-sm btn-outline-danger w-100">
+                                    Ver unidad
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
+

@@ -1,0 +1,538 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Automóviles Santillán | Concesionaria{% endblock %}</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Colores oficiales extraídos de la gráfica de Santillán */
+            --santillan-navy: #01072c;
+            --santillan-navy-dark: #00041d;
+            --santillan-navy-light: #060e3b;
+            --santillan-red: #e90b0f;
+            --santillan-cyan: #72c5d6;
+            --santillan-cyan-bright: #62b7ff;
+            --santillan-silver: #b8bccd;
+            --primary-color: #01072c;
+            --accent-color: #e90b0f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            padding-top: 112px; /* Compensación para header fijo con logo más grande */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Enlaces de Menú Principal (Inicio, Catálogo, Contacto) */
+        .nav-link-santillan {
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 8px 14px !important;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            background: transparent;
+        }
+
+        .nav-link-santillan i {
+            color: #72c5d6;
+            transition: color 0.25s ease;
+        }
+
+        .nav-link-santillan:hover {
+            color: #ffffff !important;
+            background-color: rgba(233, 11, 15, 0.25);
+            box-shadow: 0 0 14px rgba(233, 11, 15, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .nav-link-santillan:hover i {
+            color: #ffffff;
+        }
+
+        /* Botones de Navegación del Footer */
+        .footer-nav-btn {
+            color: #ffffff;
+            font-size: 0.84rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(114, 197, 214, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-nav-btn:hover {
+            color: #ffffff;
+            background-color: #e90b0f;
+            border-color: #e90b0f;
+            box-shadow: 0 4px 15px rgba(233, 11, 15, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Header Fijo con los colores exactos del diseño Santillán */
+        .navbar-santillan {
+            background: linear-gradient(135deg, #01072c 0%, #060e3b 50%, #01072c 100%);
+            border-bottom: 3px solid #e90b0f;
+            box-shadow: 0 6px 20px rgba(1, 7, 44, 0.6);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            transition: all 0.3s ease;
+        }
+
+        /* Línea de resplandor tecnológica inspirada en el flyer */
+        .navbar-santillan::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #72c5d6 25%, #e90b0f 50%, #72c5d6 75%, transparent 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.35rem;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-left: 55px; /* Desplazado hacia la derecha */
+        }
+
+        .navbar-brand img.brand-logo-img {
+            height: 82px; /* Tamaño más grande y notorio */
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.4));
+            transition: transform 0.25s ease;
+        }
+
+        .navbar-brand:hover img.brand-logo-img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 992px) {
+            .navbar-brand {
+                margin-left: 20px;
+            }
+            .navbar-brand img.brand-logo-img {
+                height: 68px;
+            }
+            body {
+                padding-top: 102px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                margin-left: 10px;
+            }
+            .navbar-brand img.brand-logo-img {
+                height: 56px;
+            }
+            body {
+                padding-top: 96px;
+            }
+        }
+
+        .navbar-brand .brand-badge {
+            background: linear-gradient(135deg, #e90b0f 0%, #b91c1c 100%);
+            padding: 4px 9px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Botones de contacto y vendedores */
+        .phone-contact-item {
+            color: #ffffff;
+            font-size: 0.86rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 13px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(114, 197, 214, 0.3);
+            backdrop-filter: blur(6px);
+            transition: all 0.25s ease-in-out;
+        }
+
+        .phone-contact-item i.bi-telephone-fill {
+            color: #72c5d6 !important;
+        }
+
+        .phone-contact-item i.bi-whatsapp {
+            color: #25d366 !important;
+        }
+
+        .phone-contact-item:hover {
+            color: #ffffff;
+            background-color: #e90b0f;
+            border-color: #e90b0f;
+            box-shadow: 0 4px 15px rgba(233, 11, 15, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .phone-contact-item:hover i.bi-telephone-fill,
+        .phone-contact-item:hover i.bi-whatsapp {
+            color: #ffffff !important;
+        }
+
+        .btn-panel-config {
+            border: 1px solid #e90b0f;
+            color: #ffffff;
+            background: rgba(233, 11, 15, 0.15);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .btn-panel-config:hover {
+            background-color: #e90b0f;
+            color: #ffffff;
+            border-color: #e90b0f;
+            box-shadow: 0 4px 15px rgba(233, 11, 15, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Cards de catálogo */
+        .card-vehiculo {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card-vehiculo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -8px rgba(15, 23, 42, 0.15);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            background-color: #0f172a;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card-vehiculo:hover .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .badge-categoria {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(4px);
+            color: #ffffff;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+        }
+
+        .badge-anio {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #e11d48;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+        }
+
+        /* Cartel de Destacado */
+        .badge-destacado {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.8px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(180, 83, 9, 0.45);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: pulse-glow 2.5s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 12px rgba(180, 83, 9, 0.45); }
+            50% { box-shadow: 0 4px 18px rgba(245, 158, 11, 0.7); }
+        }
+
+        /* Lista resumida de especificaciones */
+        .specs-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+            font-size: 0.88rem;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .specs-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .specs-val {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Carrusel en Vista Detalle */
+        .carousel-detalle {
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #0f172a;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-detalle .carousel-item {
+            height: 480px;
+        }
+
+        .carousel-detalle .carousel-item img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            background-color: #0b1120;
+        }
+
+        /* Footer con identidad Santillán */
+        footer {
+            margin-top: auto;
+            background: linear-gradient(180deg, #01072c 0%, #00041d 100%);
+            color: #b8bccd;
+            border-top: 3px solid #e90b0f;
+            box-shadow: 0 -4px 15px rgba(1, 7, 44, 0.5);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #72c5d6 30%, #e90b0f 50%, #72c5d6 70%, transparent 100%);
+            opacity: 0.8;
+        }
+
+        /* Logo Redondo del Footer */
+        .footer-round-logo {
+            height: 68px;
+            width: 68px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid rgba(114, 197, 214, 0.45);
+            background-color: #01072c;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 14px rgba(114, 197, 214, 0.25);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-round-logo:hover {
+            transform: scale(1.08);
+            border-color: #e90b0f;
+            box-shadow: 0 6px 20px rgba(233, 11, 15, 0.55);
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- HEADER FIJO BOOTSTRAP CON DISEÑO GRÁFICO SANTILLÁN -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-santillan fixed-top">
+        <div class="container-fluid px-lg-4">
+            
+            <!-- Izquierda: Logotipo Oficial de la Concesionaria -->
+            <a class="navbar-brand py-0" href="{% url 'catalogo:lista_vehiculos' %}">
+                <img src="{% static 'img/logo 2.png' %}" alt="Logo" class="brand-logo-img">
+            </a>
+
+            <!-- Botón colapsable para móviles -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú central y accesos derechos -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                
+                <!-- Botones de Navegación: Inicio, Catálogo, Contacto (en una sola línea) -->
+                <div class="d-flex flex-row flex-nowrap align-items-center gap-2 my-2 my-lg-0 ms-lg-3">
+                    <a href="{% url 'catalogo:lista_vehiculos' %}" class="nav-link-santillan text-nowrap">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span>Inicio</span>
+                    </a>
+                    <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="nav-link-santillan text-nowrap">
+                        <i class="bi bi-car-front-fill"></i>
+                        <span>Catálogo</span>
+                    </a>
+                    <a href="#contacto" class="nav-link-santillan text-nowrap">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Contacto</span>
+                    </a>
+                </div>
+
+                <!-- Derecha: Teléfonos de los vendedores y accesos -->
+                <div class="d-flex flex-column flex-lg-row align-items-lg-center my-2 my-lg-0">
+                    <div class="d-flex flex-wrap align-items-center gap-1 me-lg-2">
+                        <span class="small fw-semibold d-none d-xl-inline text-nowrap me-1" style="color: #72c5d6;">
+                            <i class="bi bi-headset me-1" style="color: #e90b0f;"></i> Ventas & Asesoramiento:
+                        </span>
+                        
+                        <a href="https://wa.me/5491123456789?text=Hola,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="phone-contact-item" title="Ventas WhatsApp 1">
+                            <i class="bi bi-whatsapp"></i>
+                            <span>Ventas: +54 9 11 2345-6789</span>
+                        </a>
+                        
+                        <a href="https://wa.me/5491187654321?text=Hola,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="phone-contact-item ms-1" title="Ventas WhatsApp 2">
+                            <i class="bi bi-whatsapp"></i>
+                            <span>Ventas: +54 9 11 8765-4321</span>
+                        </a>
+                    </div>
+                    
+                    <a href="{% url 'catalogo:panel_dashboard' %}" class="btn-panel-config text-decoration-none d-inline-flex align-items-center gap-1 ms-lg-2 mt-2 mt-lg-0" title="Panel de Configuración">
+                        <i class="bi bi-gear-fill" style="color: #e90b0f;"></i>
+                        <span>Configuración</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="py-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER CON BOTONES INICIO, CATÁLOGO Y CONTACTO -->
+    <footer id="contacto" class="py-5">
+        <div class="container text-center text-md-start">
+            <div class="row gy-4 align-items-center">
+                <!-- Columna 1: Logo Redondo y Reseña -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-3 text-center text-md-start">
+                        <img src="{% static 'img/logo_redondo.png' %}" alt="Logo Automóviles Santillán" class="footer-round-logo">
+                    </div>
+                    <p class="small mb-0" style="color: #b8bccd;">Venta de vehículos seleccionados, utilitarios y pick ups. Confiabilidad y trayectoria garantizada.</p>
+                </div>
+
+                <!-- Columna 2: Botones de Inicio, Catálogo y Contacto -->
+                <div class="col-lg-4 col-md-6 text-center my-2 my-md-0">
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <a href="{% url 'catalogo:lista_vehiculos' %}" class="footer-nav-btn">
+                            <i class="bi bi-house-door-fill" style="color: #72c5d6;"></i> Inicio
+                        </a>
+                        <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="footer-nav-btn">
+                            <i class="bi bi-car-front-fill" style="color: #72c5d6;"></i> Catálogo
+                        </a>
+                        <a href="#contacto" class="footer-nav-btn">
+                            <i class="bi bi-envelope-fill" style="color: #72c5d6;"></i> Contacto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna 3: Datos de Contacto y Ubicación -->
+                <div class="col-lg-4 col-md-12 text-center text-lg-end">
+                    <p class="small mb-1 text-white"><i class="bi bi-geo-alt-fill me-1" style="color: #e90b0f;"></i> Av. Principal 1234, Buenos Aires, Argentina</p>
+                    <p class="small mb-2" style="color: #72c5d6;"><i class="bi bi-telephone-fill me-1"></i> (011) 4567-8900 &bull; WhatsApp: +54 9 11 2345-6789</p>
+                    <p class="small mb-0 text-white-50">© {% now "Y" %} Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
+
