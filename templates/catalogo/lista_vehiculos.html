@@ -2,11 +2,11 @@
 
 {% block title %}Catálogo de Vehículos | Automóviles Santillán{% endblock %}
 
-{% block main_class %}pt-0 pb-4{% endblock %}
+{% block main_class %}p-0{% endblock %}
 
 {% block content %}
-<!-- PORTADA FULL-WIDTH: Desde abajo del header hasta la barra de búsqueda y filtros -->
-<div class="hero-portada-fullwidth mb-4">
+<!-- PORTADA FULL-WIDTH: Unida al header arriba y a la barra de filtros abajo, sin márgenes -->
+<div class="hero-portada-fullwidth">
     <div class="hero-portada-overlay d-flex flex-column justify-content-center">
         <div class="container py-4 py-lg-5">
             <div class="row align-items-center">
@@ -44,93 +44,93 @@
     </div>
 </div>
 
-<div class="container">
+<!-- BARRA DE FILTROS Y BÚSQUEDA PEGADA DIRECTAMENTE AL BORDE INFERIOR DE LA PORTADA -->
+<div id="catalogo" class="filter-bar-attached" style="scroll-margin-top: 100px;">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+            <div class="d-flex align-items-center gap-2 text-nowrap">
+                <i class="bi bi-funnel-fill text-danger fs-5"></i>
+                <span class="fw-bold text-dark">Filtrar por Categoría:</span>
+            </div>
 
-    <!-- Barra de Filtros por Categoría y Búsqueda -->
-    <div id="catalogo" class="card border-0 shadow-sm mb-4" style="scroll-margin-top: 120px;">
-        <div class="card-body p-3">
-            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
-                <div class="d-flex align-items-center gap-2 text-nowrap">
-                    <i class="bi bi-funnel-fill text-danger fs-5"></i>
-                    <span class="fw-bold text-dark">Filtrar por Categoría:</span>
-                </div>
+            <!-- Botonera de Categorías (Visible en pantallas medianas y grandes) -->
+            <div class="d-none d-md-flex flex-wrap gap-2">
+                <a href="{% url 'catalogo:lista_vehiculos' %}" 
+                   class="btn btn-sm {% if not categoria_seleccionada %}btn-dark text-white fw-bold{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+                    Todas
+                </a>
 
-                <!-- Botonera de Categorías (Visible en pantallas medianas y grandes) -->
-                <div class="d-none d-md-flex flex-wrap gap-2">
-                    <a href="{% url 'catalogo:lista_vehiculos' %}" 
-                       class="btn btn-sm {% if not categoria_seleccionada %}btn-dark text-white fw-bold{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
-                        Todas
-                    </a>
-
-                    <!-- Filtro Destacados -->
-                    <a href="{% url 'catalogo:lista_vehiculos' %}?categoria=destacados" 
-                       class="btn btn-sm {% if es_destacados %}btn-warning text-dark fw-bold shadow-sm border-warning{% else %}btn-outline-warning text-dark fw-semibold{% endif %} rounded-pill px-3 d-inline-flex align-items-center gap-1">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <span>Destacados</span>
-                        {% if total_destacados > 0 %}
-                            <span class="badge bg-dark text-warning rounded-pill ms-1" style="font-size: 0.7rem;">{{ total_destacados }}</span>
-                        {% endif %}
-                    </a>
-
-                    {% for valor, etiqueta in categorias %}
-                        <a href="{% url 'catalogo:lista_vehiculos' %}?categoria={{ valor|urlencode }}" 
-                           class="btn btn-sm {% if categoria_seleccionada == valor and not es_destacados %}btn-danger text-white fw-bold shadow-sm{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
-                            {{ etiqueta }}
-                        </a>
-                    {% endfor %}
-                </div>
-
-                <!-- Buscador de marcas y modelos -->
-                <form method="get" action="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="d-flex align-items-center" style="min-width: 260px;">
-                    {% if categoria_seleccionada %}
-                        <input type="hidden" name="categoria" value="{{ categoria_seleccionada }}">
+                <!-- Filtro Destacados -->
+                <a href="{% url 'catalogo:lista_vehiculos' %}?categoria=destacados" 
+                   class="btn btn-sm {% if es_destacados %}btn-warning text-dark fw-bold shadow-sm border-warning{% else %}btn-outline-warning text-dark fw-semibold{% endif %} rounded-pill px-3 d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span>Destacados</span>
+                    {% if total_destacados > 0 %}
+                        <span class="badge bg-dark text-warning rounded-pill ms-1" style="font-size: 0.7rem;">{{ total_destacados }}</span>
                     {% endif %}
-                    <div class="input-group input-group-sm">
-                        <input type="text" name="q" value="{{ busqueda }}" class="form-control rounded-start-pill ps-3" placeholder="Buscar marca, modelo..." aria-label="Buscar vehículo">
-                        <button class="btn btn-danger rounded-end-pill px-3" type="submit" title="Buscar">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
+                </a>
 
-                <!-- Dropdown de Categorías (Optimizado para móviles o alternativo) -->
-                <div class="d-md-none dropdown w-100">
-                    <button class="btn btn-outline-dark dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span>
-                            <i class="bi bi-tags me-1"></i>
-                            {% if es_destacados %}
-                                Categoría: <strong>⭐ Destacados</strong>
-                            {% elif categoria_seleccionada %}
-                                Categoría: <strong>{{ categoria_seleccionada }}</strong>
-                            {% else %}
-                                Todas las Categorías
-                            {% endif %}
-                        </span>
+                {% for valor, etiqueta in categorias %}
+                    <a href="{% url 'catalogo:lista_vehiculos' %}?categoria={{ valor|urlencode }}" 
+                       class="btn btn-sm {% if categoria_seleccionada == valor and not es_destacados %}btn-danger text-white fw-bold shadow-sm{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+                        {{ etiqueta }}
+                    </a>
+                {% endfor %}
+            </div>
+
+            <!-- Buscador de marcas y modelos -->
+            <form method="get" action="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="d-flex align-items-center" style="min-width: 260px;">
+                {% if categoria_seleccionada %}
+                    <input type="hidden" name="categoria" value="{{ categoria_seleccionada }}">
+                {% endif %}
+                <div class="input-group input-group-sm">
+                    <input type="text" name="q" value="{{ busqueda }}" class="form-control rounded-start-pill ps-3" placeholder="Buscar marca, modelo..." aria-label="Buscar vehículo">
+                    <button class="btn btn-danger rounded-end-pill px-3" type="submit" title="Buscar">
+                        <i class="bi bi-search"></i>
                     </button>
-                    <ul class="dropdown-menu w-100 shadow">
-                        <li>
-                            <a class="dropdown-item {% if not categoria_seleccionada %}active bg-danger{% endif %}" href="{% url 'catalogo:lista_vehiculos' %}">
-                                Todas las Categorías
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item {% if es_destacados %}active bg-warning text-dark fw-bold{% endif %}" href="{% url 'catalogo:lista_vehiculos' %}?categoria=destacados">
-                                <i class="bi bi-star-fill text-warning me-1"></i> ⭐ Solo Destacados ({{ total_destacados }})
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        {% for valor, etiqueta in categorias %}
-                            <li>
-                                <a class="dropdown-item {% if categoria_seleccionada == valor and not es_destacados %}active bg-danger{% endif %}" href="{% url 'catalogo:lista_vehiculos' %}?categoria={{ valor|urlencode }}">
-                                    {{ etiqueta }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
                 </div>
+            </form>
+
+            <!-- Dropdown de Categorías (Optimizado para móviles) -->
+            <div class="d-md-none dropdown w-100">
+                <button class="btn btn-outline-dark dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>
+                        <i class="bi bi-tags me-1"></i>
+                        {% if es_destacados %}
+                            Categoría: <strong>⭐ Destacados</strong>
+                        {% elif categoria_seleccionada %}
+                            Categoría: <strong>{{ categoria_seleccionada }}</strong>
+                        {% else %}
+                            Todas las Categorías
+                        {% endif %}
+                    </span>
+                </button>
+                <ul class="dropdown-menu w-100 shadow">
+                    <li>
+                        <a class="dropdown-item {% if not categoria_seleccionada %}active bg-danger{% endif %}" href="{% url 'catalogo:lista_vehiculos' %}">
+                            Todas las Categorías
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {% if es_destacados %}active bg-warning text-dark fw-bold{% endif %}" href="{% url 'catalogo:lista_vehiculos' %}?categoria=destacados">
+                            <i class="bi bi-star-fill text-warning me-1"></i> ⭐ Solo Destacados ({{ total_destacados }})
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    {% for valor, etiqueta in categorias %}
+                        <li>
+                            <a class="dropdown-item {% if categoria_seleccionada == valor and not es_destacados %}active bg-danger{% endif %}" href="{% url 'catalogo:lista_vehiculos' %}?categoria={{ valor|urlencode }}">
+                                {{ etiqueta }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+</div>
+
+<div class="container py-4">
 
     <!-- Grilla de Vehículos en Cards -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">

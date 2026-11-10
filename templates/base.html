@@ -33,11 +33,15 @@
             scroll-behavior: smooth;
         }
 
+        :root {
+            --nav-height: 94px;
+        }
+
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #f8fafc;
             color: #1e293b;
-            padding-top: 112px; /* Compensación para header fijo con logo más grande */
+            padding-top: var(--nav-height);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -147,26 +151,26 @@
         }
 
         @media (max-width: 992px) {
+            :root {
+                --nav-height: 80px;
+            }
             .navbar-brand {
                 margin-left: 20px;
             }
             .navbar-brand img.brand-logo-img {
                 height: 68px;
             }
-            body {
-                padding-top: 102px;
-            }
         }
 
         @media (max-width: 576px) {
+            :root {
+                --nav-height: 68px;
+            }
             .navbar-brand {
                 margin-left: 10px;
             }
             .navbar-brand img.brand-logo-img {
                 height: 56px;
-            }
-            body {
-                padding-top: 96px;
             }
         }
 
@@ -321,14 +325,16 @@
             }
         }
 
-        /* Hero Banner Portada Full-Width (de extremo a extremo de pantalla) */
+        /* Hero Banner Portada Full-Width (de extremo a extremo de pantalla, unida sin márgenes) */
         .hero-portada-fullwidth {
             position: relative;
             width: 100%;
             background: #01072c url("{% static 'img/portada.webp' %}") center center / cover no-repeat;
-            border-bottom: 3px solid #e90b0f;
-            box-shadow: 0 10px 30px rgba(1, 7, 44, 0.45);
-            margin-top: 0;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
             overflow: hidden;
         }
 
@@ -342,6 +348,19 @@
                 background: linear-gradient(180deg, rgba(1, 7, 44, 0.95) 0%, rgba(1, 7, 44, 0.84) 100%);
                 min-height: 320px;
             }
+        }
+
+        /* Barra de filtros y búsqueda pegada directamente a la portada */
+        .filter-bar-attached {
+            width: 100%;
+            margin-top: 0 !important;
+            background-color: #ffffff;
+            border-top: 3px solid #e90b0f;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 0.85rem 0;
+            position: relative;
+            z-index: 5;
         }
 
         .badge-hero-garantia {
@@ -703,6 +722,19 @@
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Sincronizar altura exacta del header fijo para eliminar cualquier margen superior -->
+    <script>
+        function sincronizarAlturaHeader() {
+            const nav = document.querySelector('.navbar-santillan');
+            if (nav) {
+                document.documentElement.style.setProperty('--nav-height', nav.offsetHeight + 'px');
+            }
+        }
+        sincronizarAlturaHeader();
+        window.addEventListener('load', sincronizarAlturaHeader);
+        window.addEventListener('resize', sincronizarAlturaHeader);
+    </script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>
