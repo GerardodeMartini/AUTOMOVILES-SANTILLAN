@@ -5,22 +5,38 @@
 {% block content %}
 <div class="container">
 
-    <!-- Encabezado / Hero Banner -->
-    <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border mb-4">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <span class="badge bg-danger-subtle text-danger mb-2 px-3 py-2 rounded-pill fw-bold">
-                    <i class="bi bi-shield-check me-1"></i> Unidades Seleccionadas y Garantizadas
-                </span>
-                <h1 class="display-6 fw-bold text-dark mb-2">Encontrá tu próximo vehículo</h1>
-                <p class="text-muted mb-0 lead fs-6">
-                    Explorá nuestro catálogo de autos usados y seminuevos. Calidad mecánica garantizada y la mejor financiación.
-                </p>
-            </div>
-            <div class="col-lg-4 mt-3 mt-lg-0 text-lg-end">
-                <div class="card bg-light border-0 p-3 text-center">
-                    <span class="text-muted small">Vehículos en catálogo</span>
-                    <span class="fs-2 fw-bold text-dark">{{ total_vehiculos }}</span>
+    <!-- Hero Banner con Foto de Portada Oficial -->
+    <div class="hero-portada-banner mb-4">
+        <div class="hero-portada-overlay d-flex flex-column justify-content-center p-4 p-md-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-xl-7">
+                    <span class="badge-hero-garantia mb-3">
+                        <i class="bi bi-shield-check text-danger"></i>
+                        <span>Unidades Seleccionadas y Garantizadas</span>
+                    </span>
+                    <h1 class="display-5 fw-bold text-white mb-2" style="letter-spacing: -0.5px;">
+                        Encontrá tu próximo vehículo
+                    </h1>
+                    <p class="text-white-50 lead fs-6 mb-4" style="max-width: 520px;">
+                        Explorá nuestro catálogo de autos, utilitarios y pick ups seleccionadas. Confiabilidad, trayectoria y asesoramiento personalizado.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#catalogo" class="btn btn-danger px-4 py-2 fw-bold rounded-pill shadow-sm">
+                            <i class="bi bi-car-front-fill me-1"></i> Ver Catálogo
+                        </a>
+                        <a href="https://wa.me/5491123456789?text=Hola,%20quisiera%20consultar%20por%20un%20veh%C3%ADculo" target="_blank" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-pill">
+                            <i class="bi bi-whatsapp text-success me-1"></i> Consultar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xl-5 text-lg-end mt-4 mt-lg-0">
+                    <div class="hero-stock-card d-inline-block p-3 px-4 text-center">
+                        <span class="text-white-50 small text-uppercase fw-semibold d-block">Vehículos Disponibles</span>
+                        <span class="fs-1 fw-bold text-white lh-1 my-1 d-block">{{ total_vehiculos }}</span>
+                        <span class="d-block small text-warning fw-semibold">
+                            <i class="bi bi-patch-check-fill me-1"></i> Stock actualizado
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

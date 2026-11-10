@@ -38,3 +38,4 @@ EXPOSE 8000
 
 # Ejecutar punto de entrada
 ENTRYPOINT ["/app/entrypoint.sh"]
+
