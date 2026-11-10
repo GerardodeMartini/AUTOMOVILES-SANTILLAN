@@ -321,26 +321,26 @@
             }
         }
 
-        /* Hero Banner con Foto de Portada Institucional */
-        .hero-portada-banner {
+        /* Hero Banner Portada Full-Width (de extremo a extremo de pantalla) */
+        .hero-portada-fullwidth {
             position: relative;
+            width: 100%;
             background: #01072c url("{% static 'img/portada.webp' %}") center center / cover no-repeat;
-            border-radius: 20px;
+            border-bottom: 3px solid #e90b0f;
+            box-shadow: 0 10px 30px rgba(1, 7, 44, 0.45);
+            margin-top: 0;
             overflow: hidden;
-            border: 1px solid rgba(114, 197, 214, 0.25);
-            border-bottom: 4px solid #e90b0f;
-            box-shadow: 0 10px 30px rgba(1, 7, 44, 0.25);
         }
 
-        .hero-portada-overlay {
-            background: linear-gradient(90deg, rgba(1, 7, 44, 0.94) 0%, rgba(1, 7, 44, 0.85) 45%, rgba(1, 7, 44, 0.45) 80%, rgba(1, 7, 44, 0.2) 100%);
-            min-height: 340px;
+        .hero-portada-fullwidth .hero-portada-overlay {
+            background: linear-gradient(90deg, rgba(1, 7, 44, 0.95) 0%, rgba(1, 7, 44, 0.88) 42%, rgba(1, 7, 44, 0.5) 75%, rgba(1, 7, 44, 0.22) 100%);
+            min-height: 420px;
         }
 
         @media (max-width: 991px) {
-            .hero-portada-overlay {
-                background: linear-gradient(180deg, rgba(1, 7, 44, 0.95) 0%, rgba(1, 7, 44, 0.82) 100%);
-                min-height: 280px;
+            .hero-portada-fullwidth .hero-portada-overlay {
+                background: linear-gradient(180deg, rgba(1, 7, 44, 0.95) 0%, rgba(1, 7, 44, 0.84) 100%);
+                min-height: 320px;
             }
         }
 
@@ -623,7 +623,7 @@
     </nav>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="py-4">
+    <main class="{% block main_class %}py-4{% endblock %}">
         {% block content %}
         {% endblock %}
     </main>

@@ -2,22 +2,23 @@
 
 {% block title %}Catálogo de Vehículos | Automóviles Santillán{% endblock %}
 
-{% block content %}
-<div class="container">
+{% block main_class %}pt-0 pb-4{% endblock %}
 
-    <!-- Hero Banner con Foto de Portada Oficial -->
-    <div class="hero-portada-banner mb-4">
-        <div class="hero-portada-overlay d-flex flex-column justify-content-center p-4 p-md-5">
+{% block content %}
+<!-- PORTADA FULL-WIDTH: Desde abajo del header hasta la barra de búsqueda y filtros -->
+<div class="hero-portada-fullwidth mb-4">
+    <div class="hero-portada-overlay d-flex flex-column justify-content-center">
+        <div class="container py-4 py-lg-5">
             <div class="row align-items-center">
                 <div class="col-lg-8 col-xl-7">
                     <span class="badge-hero-garantia mb-3">
                         <i class="bi bi-shield-check text-danger"></i>
                         <span>Unidades Seleccionadas y Garantizadas</span>
                     </span>
-                    <h1 class="display-5 fw-bold text-white mb-2" style="letter-spacing: -0.5px;">
+                    <h1 class="display-4 fw-bold text-white mb-2" style="letter-spacing: -0.5px;">
                         Encontrá tu próximo vehículo
                     </h1>
-                    <p class="text-white-50 lead fs-6 mb-4" style="max-width: 520px;">
+                    <p class="text-white-50 lead fs-6 mb-4" style="max-width: 540px;">
                         Explorá nuestro catálogo de autos, utilitarios y pick ups seleccionadas. Confiabilidad, trayectoria y asesoramiento personalizado.
                     </p>
                     <div class="d-flex flex-wrap gap-2">
@@ -41,12 +42,15 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Barra de Filtros por Categoría -->
+<div class="container">
+
+    <!-- Barra de Filtros por Categoría y Búsqueda -->
     <div id="catalogo" class="card border-0 shadow-sm mb-4" style="scroll-margin-top: 120px;">
         <div class="card-body p-3">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-                <div class="d-flex align-items-center gap-2">
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                <div class="d-flex align-items-center gap-2 text-nowrap">
                     <i class="bi bi-funnel-fill text-danger fs-5"></i>
                     <span class="fw-bold text-dark">Filtrar por Categoría:</span>
                 </div>
@@ -75,6 +79,19 @@
                         </a>
                     {% endfor %}
                 </div>
+
+                <!-- Buscador de marcas y modelos -->
+                <form method="get" action="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="d-flex align-items-center" style="min-width: 260px;">
+                    {% if categoria_seleccionada %}
+                        <input type="hidden" name="categoria" value="{{ categoria_seleccionada }}">
+                    {% endif %}
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="q" value="{{ busqueda }}" class="form-control rounded-start-pill ps-3" placeholder="Buscar marca, modelo..." aria-label="Buscar vehículo">
+                        <button class="btn btn-danger rounded-end-pill px-3" type="submit" title="Buscar">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
 
                 <!-- Dropdown de Categorías (Optimizado para móviles o alternativo) -->
                 <div class="d-md-none dropdown w-100">
