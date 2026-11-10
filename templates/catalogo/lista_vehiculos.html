@@ -15,18 +15,21 @@
                         <i class="bi bi-shield-check text-danger"></i>
                         <span>Unidades Seleccionadas y Garantizadas</span>
                     </span>
-                    <h1 class="display-4 fw-bold text-white mb-2" style="letter-spacing: -0.5px;">
+                    <h1 class="fw-bold text-white mb-2 text-nowrap" style="font-size: clamp(1.6rem, 3.2vw, 2.6rem); letter-spacing: -0.5px;">
                         Encontrá tu próximo vehículo
                     </h1>
-                    <p class="text-white-50 lead fs-6 mb-4" style="max-width: 540px;">
+                    <p class="text-white-50 lead fs-6 mb-4" style="max-width: 540px; text-align: justify; text-justify: inter-word;">
                         Explorá nuestro catálogo de autos, utilitarios y pick ups seleccionadas. Confiabilidad, trayectoria y asesoramiento personalizado.
                     </p>
                     <div class="d-flex flex-wrap gap-2">
                         <a href="#catalogo" class="btn btn-danger px-4 py-2 fw-bold rounded-pill shadow-sm">
                             <i class="bi bi-car-front-fill me-1"></i> Ver Catálogo
                         </a>
-                        <a href="https://wa.me/5491123456789?text=Hola,%20quisiera%20consultar%20por%20un%20veh%C3%ADculo" target="_blank" class="btn btn-outline-light px-4 py-2 fw-semibold rounded-pill">
-                            <i class="bi bi-whatsapp text-success me-1"></i> Consultar por WhatsApp
+                        <a href="https://wa.me/5492302518898?text=Hola%20Pablo,%20quisiera%20consultar%20por%20un%20veh%C3%ADculo" target="_blank" class="btn btn-outline-light px-3 py-2 fw-semibold rounded-pill" title="WhatsApp Pablo: +54 9 2302 51-8898">
+                            <i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Pablo
+                        </a>
+                        <a href="https://wa.me/5492302305833?text=Hola%20Nacho,%20quisiera%20consultar%20por%20un%20veh%C3%ADculo" target="_blank" class="btn btn-outline-light px-3 py-2 fw-semibold rounded-pill" title="WhatsApp Nacho: +54 9 2302 30-5833">
+                            <i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Nacho
                         </a>
                     </div>
                 </div>
@@ -78,13 +81,15 @@
                 {% endfor %}
             </div>
 
-            <!-- Buscador de marcas y modelos -->
+            <!-- Buscador de marcas y modelos (búsqueda global en todo el catálogo) -->
             <form method="get" action="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="d-flex align-items-center" style="min-width: 260px;">
-                {% if categoria_seleccionada %}
-                    <input type="hidden" name="categoria" value="{{ categoria_seleccionada }}">
-                {% endif %}
                 <div class="input-group input-group-sm">
-                    <input type="text" name="q" value="{{ busqueda }}" class="form-control rounded-start-pill ps-3" placeholder="Buscar marca, modelo..." aria-label="Buscar vehículo">
+                    <input type="text" name="q" value="{{ busqueda }}" class="form-control rounded-start-pill ps-3" placeholder="Buscar marca, modelo, motor..." aria-label="Buscar vehículo">
+                    {% if busqueda %}
+                        <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="btn btn-outline-secondary d-flex align-items-center px-2" title="Limpiar búsqueda">
+                            <i class="bi bi-x-lg"></i>
+                        </a>
+                    {% endif %}
                     <button class="btn btn-danger rounded-end-pill px-3" type="submit" title="Buscar">
                         <i class="bi bi-search"></i>
                     </button>
@@ -130,10 +135,37 @@
     </div>
 </div>
 
-<div class="container py-4">
+<div class="container pt-3 pb-2">
+
+    <!-- Indicador de filtros o búsqueda activos -->
+    {% if busqueda or categoria_seleccionada %}
+        <div class="d-flex flex-wrap justify-content-between align-items-center bg-white p-3 rounded-4 shadow-sm mb-4 border">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="text-secondary small fw-semibold">Filtros aplicados:</span>
+                {% if busqueda %}
+                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2 rounded-pill">
+                        <i class="bi bi-search me-1"></i> Búsqueda: "{{ busqueda }}"
+                    </span>
+                {% endif %}
+                {% if es_destacados %}
+                    <span class="badge bg-warning-subtle text-dark border border-warning px-3 py-2 rounded-pill">
+                        <i class="bi bi-star-fill text-warning me-1"></i> Destacados
+                    </span>
+                {% elif categoria_seleccionada %}
+                    <span class="badge bg-secondary-subtle text-dark border px-3 py-2 rounded-pill">
+                        <i class="bi bi-tag me-1"></i> Categoría: {{ categoria_seleccionada }}
+                    </span>
+                {% endif %}
+                <span class="text-muted small ms-2">({{ total_resultados }} vehículo{{ total_resultados|pluralize:"s" }} encontrado{{ total_resultados|pluralize:"s" }})</span>
+            </div>
+            <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="btn btn-sm btn-outline-secondary rounded-pill px-3 mt-2 mt-sm-0">
+                <i class="bi bi-x-circle me-1"></i> Quitar filtros
+            </a>
+        </div>
+    {% endif %}
 
     <!-- Grilla de Vehículos en Cards -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-3">
         {% for vehiculo in vehiculos %}
             <div class="col">
                 <div class="card h-100 card-vehiculo shadow-sm {% if vehiculo.destacado %}border-warning border-2{% endif %} position-relative">
@@ -227,14 +259,18 @@
                     <i class="bi bi-search display-3 text-muted mb-3"></i>
                     <h4 class="fw-bold text-dark">No se encontraron vehículos</h4>
                     <p class="text-muted">
-                        {% if categoria_seleccionada %}
+                        {% if busqueda and categoria_seleccionada %}
+                            No encontramos vehículos que coincidan con "<strong>{{ busqueda }}</strong>" en la categoría "<strong>{{ categoria_seleccionada }}</strong>".
+                        {% elif busqueda %}
+                            No encontramos vehículos que coincidan con "<strong>{{ busqueda }}</strong>". Probá buscando por otra marca, modelo o año.
+                        {% elif categoria_seleccionada %}
                             No hay unidades disponibles en la categoría <strong>"{{ categoria_seleccionada }}"</strong> en este momento.
                         {% else %}
                             Aún no se han cargado vehículos en el catálogo.
                         {% endif %}
                     </p>
                     <div class="mt-2">
-                        <a href="{% url 'catalogo:lista_vehiculos' %}" class="btn btn-dark rounded-pill px-4">
+                        <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="btn btn-dark rounded-pill px-4">
                             Ver todo el catálogo
                         </a>
                     </div>

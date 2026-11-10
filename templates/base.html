@@ -495,12 +495,14 @@
             border-top: 3px solid #e90b0f;
             box-shadow: 0 -4px 15px rgba(1, 7, 44, 0.5);
             position: relative;
+            padding-top: 1.25rem !important;
+            padding-bottom: 1.75rem !important;
         }
 
         /* Logo Redondo del Footer */
         .footer-round-logo {
-            height: 68px;
-            width: 68px;
+            height: 110px;
+            width: 110px;
             object-fit: contain;
             border-radius: 50%;
             border: 2px solid rgba(114, 197, 214, 0.45);
@@ -622,12 +624,12 @@
                             <i class="bi bi-headset me-1" style="color: #e90b0f;"></i> Ventas & Asesoramiento:
                         </span>
                         
-                        <a href="https://wa.me/5491123456789?text=Hola%20Pablo,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="phone-contact-item" title="Contactar a Pablo por WhatsApp">
+                        <a href="https://wa.me/5492302518898?text=Hola%20Pablo,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="phone-contact-item" title="Contactar a Pablo por WhatsApp (+54 9 2302 51-8898)">
                             <i class="bi bi-whatsapp"></i>
                             <span>Pablo</span>
                         </a>
                         
-                        <a href="https://wa.me/5491187654321?text=Hola%20Nacho,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="phone-contact-item ms-1" title="Contactar a Nacho por WhatsApp">
+                        <a href="https://wa.me/5492302305833?text=Hola%20Nacho,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="phone-contact-item ms-1" title="Contactar a Nacho por WhatsApp (+54 9 2302 30-5833)">
                             <i class="bi bi-whatsapp"></i>
                             <span>Nacho</span>
                         </a>
@@ -648,15 +650,15 @@
     </main>
 
     <!-- FOOTER CON BOTONES INICIO, CATÁLOGO Y CONTACTO -->
-    <footer id="contacto" class="py-5">
+    <footer id="contacto" class="pt-3 pb-3">
         <div class="container text-center text-md-start">
             <div class="row gy-4 align-items-center">
-                <!-- Columna 1: Logo Redondo y Reseña -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="mb-3 text-center text-md-start">
+                <!-- Columna 1: Logo Redondo y Reseña centrados entre sí -->
+                <div class="col-lg-4 col-md-6 text-center d-flex flex-column align-items-center">
+                    <div class="mb-2">
                         <img src="{% static 'img/logo_redondo.png' %}" alt="Logo Automóviles Santillán" class="footer-round-logo">
                     </div>
-                    <p class="small mb-0" style="color: #b8bccd;">Venta de vehículos seleccionados, utilitarios y pick ups. Confiabilidad y trayectoria garantizada.</p>
+                    <p class="small mb-0 text-center" style="color: #b8bccd; max-width: 310px;">Venta de vehículos seleccionados, utilitarios y pick ups. Confiabilidad y trayectoria garantizada.</p>
                 </div>
 
                 <!-- Columna 2: Botones de Inicio, Catálogo y WhatsApp de Pablo y Nacho -->
@@ -672,11 +674,11 @@
 
                     <!-- Botones de WhatsApp: Pablo y Nacho con sus logos y sin teléfonos -->
                     <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
-                        <a href="https://wa.me/5491123456789?text=Hola%20Pablo,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="footer-wa-btn" title="Contactar a Pablo por WhatsApp">
+                        <a href="https://wa.me/5492302518898?text=Hola%20Pablo,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="footer-wa-btn" title="Contactar a Pablo por WhatsApp (+54 9 2302 51-8898)">
                             <i class="bi bi-whatsapp" style="color: #25d366;"></i>
                             <span>Pablo</span>
                         </a>
-                        <a href="https://wa.me/5491187654321?text=Hola%20Nacho,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="footer-wa-btn" title="Contactar a Nacho por WhatsApp">
+                        <a href="https://wa.me/5492302305833?text=Hola%20Nacho,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="footer-wa-btn" title="Contactar a Nacho por WhatsApp (+54 9 2302 30-5833)">
                             <i class="bi bi-whatsapp" style="color: #25d366;"></i>
                             <span>Nacho</span>
                         </a>

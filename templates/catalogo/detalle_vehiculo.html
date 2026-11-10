@@ -184,16 +184,30 @@
 
                     <!-- Botones de Acción y Contacto -->
                     <div class="d-grid gap-2">
-                        <a href="https://wa.me/5491123456789?text=Hola,%20estoy%20interesado%20en%20el%20veh%C3%ADculo%20{{ vehiculo.marca|urlencode }}%20{{ vehiculo.modelo|urlencode }}%20({{ vehiculo.anio }})%20que%20vi%20en%20su%20cat%C3%A1logo." 
-                           target="_blank" 
-                           class="btn btn-success btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 shadow-sm">
-                            <i class="bi bi-whatsapp fs-5"></i>
-                            <span>Consultar por WhatsApp</span>
-                        </a>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <a href="https://wa.me/5492302518898?text=Hola%20Pablo,%20estoy%20interesado%20en%20el%20{{ vehiculo.marca|urlencode }}%20{{ vehiculo.modelo|urlencode }}%20({{ vehiculo.anio }})%20que%20vi%20en%20el%20cat%C3%A1logo." 
+                                   target="_blank" 
+                                   class="btn btn-success fw-bold w-100 d-flex justify-content-center align-items-center gap-1 shadow-sm py-2"
+                                   title="Consultar a Pablo (+54 9 2302 51-8898)">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <span>Pablo</span>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="https://wa.me/5492302305833?text=Hola%20Nacho,%20estoy%20interesado%20en%20el%20{{ vehiculo.marca|urlencode }}%20{{ vehiculo.modelo|urlencode }}%20({{ vehiculo.anio }})%20que%20vi%20en%20el%20cat%C3%A1logo." 
+                                   target="_blank" 
+                                   class="btn btn-success fw-bold w-100 d-flex justify-content-center align-items-center gap-1 shadow-sm py-2"
+                                   title="Consultar a Nacho (+54 9 2302 30-5833)">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <span>Nacho</span>
+                                </a>
+                            </div>
+                        </div>
 
-                        <a href="tel:+541145678900" class="btn btn-outline-dark fw-semibold d-flex justify-content-center align-items-center gap-2">
+                        <a href="tel:+5492302518898" class="btn btn-outline-dark fw-semibold d-flex justify-content-center align-items-center gap-2">
                             <i class="bi bi-telephone-fill"></i>
-                            <span>Llamar a un asesor comercial</span>
+                            <span>Llamar por teléfono</span>
                         </a>
 
                         <a href="{% url 'catalogo:lista_vehiculos' %}" class="btn btn-link text-secondary text-decoration-none mt-2">

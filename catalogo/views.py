@@ -34,14 +34,22 @@ def lista_vehiculos(request):
         vehiculos = vehiculos.filter(categoria=categoria_seleccionada)
 
     if busqueda:
-        vehiculos = vehiculos.filter(
+        q_filtros = (
             Q(marca__icontains=busqueda) |
             Q(modelo__icontains=busqueda) |
-            Q(motor__icontains=busqueda)
+            Q(motor__icontains=busqueda) |
+            Q(categoria__icontains=busqueda) |
+            Q(combustible__icontains=busqueda)
         )
+        if busqueda.isdigit():
+            q_filtros |= Q(anio=int(busqueda))
+        vehiculos = vehiculos.filter(q_filtros)
 
     categorias = Vehiculo.Categoria.choices
+    # Contar únicamente los vehículos visibles/disponibles para venta
+    total_disponibles = Vehiculo.objects.filter(disponible=True).count()
     total_destacados = Vehiculo.objects.filter(disponible=True, destacado=True).count()
+    total_resultados = vehiculos.count()
 
     context = {
         'vehiculos': vehiculos,
@@ -50,7 +58,8 @@ def lista_vehiculos(request):
         'es_destacados': es_destacados,
         'total_destacados': total_destacados,
         'busqueda': busqueda,
-        'total_vehiculos': vehiculos.count(),
+        'total_vehiculos': total_disponibles,
+        'total_resultados': total_resultados,
     }
     return render(request, 'catalogo/lista_vehiculos.html', context)
 
