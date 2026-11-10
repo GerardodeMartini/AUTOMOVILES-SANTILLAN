@@ -121,19 +121,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Línea de resplandor tecnológica inspirada en el flyer */
-        .navbar-santillan::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #72c5d6 25%, #e90b0f 50%, #72c5d6 75%, transparent 100%);
-            opacity: 0.9;
-            pointer-events: none;
-        }
-
         .navbar-brand {
             font-weight: 800;
             letter-spacing: 0.5px;
@@ -233,21 +220,28 @@
         }
 
         .btn-panel-config {
-            border: 1px solid #e90b0f;
+            border: 1px solid rgba(233, 11, 15, 0.6);
             color: #ffffff;
-            background: rgba(233, 11, 15, 0.15);
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-weight: 600;
+            background: rgba(233, 11, 15, 0.12);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
             transition: all 0.25s ease;
         }
 
         .btn-panel-config:hover {
             background-color: #e90b0f;
-            color: #ffffff;
             border-color: #e90b0f;
-            box-shadow: 0 4px 15px rgba(233, 11, 15, 0.5);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(233, 11, 15, 0.55);
+            transform: translateY(-2px) rotate(45deg);
+        }
+
+        .btn-panel-config:hover i {
+            color: #ffffff !important;
         }
 
         /* Cards de catálogo */
@@ -267,20 +261,64 @@
         .card-img-wrapper {
             position: relative;
             width: 100%;
-            height: 220px;
-            background-color: #0f172a;
+            height: 230px;
+            background: radial-gradient(circle, #060e3b 0%, #01072c 100%);
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .card-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             transition: transform 0.4s ease;
         }
 
         .card-vehiculo:hover .card-img-wrapper img {
             transform: scale(1.05);
+        }
+
+        /* Contenedor del carrusel de fotos en detalle de vehículo */
+        .carousel-detalle {
+            background-color: #01072c;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(1, 7, 44, 0.2);
+        }
+
+        .carousel-detalle .carousel-inner {
+            height: 480px;
+            background: radial-gradient(circle, #060e3b 0%, #01072c 100%);
+            position: relative;
+        }
+
+        .carousel-detalle .carousel-item {
+            height: 480px;
+            background-color: #01072c;
+        }
+
+        .carousel-detalle .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media (max-width: 991px) {
+            .carousel-detalle .carousel-inner,
+            .carousel-detalle .carousel-item {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-detalle .carousel-inner,
+            .carousel-detalle .carousel-item {
+                height: 250px;
+            }
         }
 
         .badge-categoria {
@@ -394,17 +432,6 @@
             position: relative;
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #72c5d6 30%, #e90b0f 50%, #72c5d6 70%, transparent 100%);
-            opacity: 0.8;
-        }
-
         /* Logo Redondo del Footer */
         .footer-round-logo {
             height: 68px;
@@ -421,6 +448,73 @@
             transform: scale(1.08);
             border-color: #e90b0f;
             box-shadow: 0 6px 20px rgba(233, 11, 15, 0.55);
+        }
+
+        /* Enlace y Contenedor Google Maps en Footer */
+        .footer-map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.25s ease;
+        }
+
+        .footer-map-link:hover {
+            color: #72c5d6;
+            transform: translateY(-1px);
+        }
+
+        .footer-map-container {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(114, 197, 214, 0.3);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            margin-left: auto;
+            margin-right: auto;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-map-container:hover {
+            border-color: #e90b0f;
+            box-shadow: 0 4px 18px rgba(233, 11, 15, 0.35);
+        }
+
+        @media (min-width: 992px) {
+            .footer-map-container {
+                margin-left: auto;
+                margin-right: 0;
+            }
+        }
+
+        /* Botones de WhatsApp en el footer (Pablo y Nacho) */
+        .footer-wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(114, 197, 214, 0.3);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .footer-wa-btn:hover {
+            color: #ffffff;
+            background-color: #25d366;
+            border-color: #25d366;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .footer-wa-btn:hover i {
+            color: #ffffff !important;
         }
     </style>
     {% block extra_head %}{% endblock %}
@@ -444,7 +538,7 @@
             <!-- Menú central y accesos derechos -->
             <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                 
-                <!-- Botones de Navegación: Inicio, Catálogo, Contacto (en una sola línea) -->
+                <!-- Botones de Navegación: Inicio y Catálogo (en una sola línea) -->
                 <div class="d-flex flex-row flex-nowrap align-items-center gap-2 my-2 my-lg-0 ms-lg-3">
                     <a href="{% url 'catalogo:lista_vehiculos' %}" class="nav-link-santillan text-nowrap">
                         <i class="bi bi-house-door-fill"></i>
@@ -453,10 +547,6 @@
                     <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="nav-link-santillan text-nowrap">
                         <i class="bi bi-car-front-fill"></i>
                         <span>Catálogo</span>
-                    </a>
-                    <a href="#contacto" class="nav-link-santillan text-nowrap">
-                        <i class="bi bi-envelope-fill"></i>
-                        <span>Contacto</span>
                     </a>
                 </div>
 
@@ -467,20 +557,19 @@
                             <i class="bi bi-headset me-1" style="color: #e90b0f;"></i> Ventas & Asesoramiento:
                         </span>
                         
-                        <a href="https://wa.me/5491123456789?text=Hola,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="phone-contact-item" title="Ventas WhatsApp 1">
+                        <a href="https://wa.me/5491123456789?text=Hola%20Pablo,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="phone-contact-item" title="Contactar a Pablo por WhatsApp">
                             <i class="bi bi-whatsapp"></i>
-                            <span>Ventas: +54 9 11 2345-6789</span>
+                            <span>Pablo</span>
                         </a>
                         
-                        <a href="https://wa.me/5491187654321?text=Hola,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="phone-contact-item ms-1" title="Ventas WhatsApp 2">
+                        <a href="https://wa.me/5491187654321?text=Hola%20Nacho,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="phone-contact-item ms-1" title="Contactar a Nacho por WhatsApp">
                             <i class="bi bi-whatsapp"></i>
-                            <span>Ventas: +54 9 11 8765-4321</span>
+                            <span>Nacho</span>
                         </a>
                     </div>
                     
-                    <a href="{% url 'catalogo:panel_dashboard' %}" class="btn-panel-config text-decoration-none d-inline-flex align-items-center gap-1 ms-lg-2 mt-2 mt-lg-0" title="Panel de Configuración">
+                    <a href="{% url 'catalogo:panel_dashboard' %}" class="btn-panel-config text-decoration-none ms-lg-2 mt-2 mt-lg-0" title="Panel de Configuración">
                         <i class="bi bi-gear-fill" style="color: #e90b0f;"></i>
-                        <span>Configuración</span>
                     </a>
                 </div>
             </div>
@@ -505,25 +594,61 @@
                     <p class="small mb-0" style="color: #b8bccd;">Venta de vehículos seleccionados, utilitarios y pick ups. Confiabilidad y trayectoria garantizada.</p>
                 </div>
 
-                <!-- Columna 2: Botones de Inicio, Catálogo y Contacto -->
+                <!-- Columna 2: Botones de Inicio, Catálogo y WhatsApp de Pablo y Nacho -->
                 <div class="col-lg-4 col-md-6 text-center my-2 my-md-0">
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
                         <a href="{% url 'catalogo:lista_vehiculos' %}" class="footer-nav-btn">
                             <i class="bi bi-house-door-fill" style="color: #72c5d6;"></i> Inicio
                         </a>
                         <a href="{% url 'catalogo:lista_vehiculos' %}#catalogo" class="footer-nav-btn">
                             <i class="bi bi-car-front-fill" style="color: #72c5d6;"></i> Catálogo
                         </a>
-                        <a href="#contacto" class="footer-nav-btn">
-                            <i class="bi bi-envelope-fill" style="color: #72c5d6;"></i> Contacto
+                    </div>
+
+                    <!-- Botones de WhatsApp: Pablo y Nacho con sus logos y sin teléfonos -->
+                    <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+                        <a href="https://wa.me/5491123456789?text=Hola%20Pablo,%20quisiera%20consultar%20sobre%20los%20veh%C3%ADculos%20en%20stock" target="_blank" class="footer-wa-btn" title="Contactar a Pablo por WhatsApp">
+                            <i class="bi bi-whatsapp" style="color: #25d366;"></i>
+                            <span>Pablo</span>
+                        </a>
+                        <a href="https://wa.me/5491187654321?text=Hola%20Nacho,%20quisiera%20asesoramiento%20por%20un%20auto" target="_blank" class="footer-wa-btn" title="Contactar a Nacho por WhatsApp">
+                            <i class="bi bi-whatsapp" style="color: #25d366;"></i>
+                            <span>Nacho</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Columna 3: Datos de Contacto y Ubicación -->
+                <!-- Columna 3: Datos de Contacto y Ubicación con Google Maps -->
                 <div class="col-lg-4 col-md-12 text-center text-lg-end">
-                    <p class="small mb-1 text-white"><i class="bi bi-geo-alt-fill me-1" style="color: #e90b0f;"></i> Av. Principal 1234, Buenos Aires, Argentina</p>
-                    <p class="small mb-2" style="color: #72c5d6;"><i class="bi bi-telephone-fill me-1"></i> (011) 4567-8900 &bull; WhatsApp: +54 9 11 2345-6789</p>
+                    <!-- 1. Mapa interactivo de Google Maps embebido (por encima de la dirección) -->
+                    <div class="footer-map-container mb-2">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Bartolom%C3%A9+Mitre+86,+Quem%C3%BA+Quem%C3%BA,+La+Pampa,+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="120" 
+                            style="border:0; display:block;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa de ubicación Automóviles Santillán - Quemú Quemú, La Pampa">
+                        </iframe>
+                    </div>
+
+                    <!-- 2. Dirección con enlace directo a la ficha oficial de Google Maps -->
+                    <div class="mb-2">
+                        <a href="https://www.google.com/search?sca_esv=3002bd02f6ae7c03&sxsrf=AKL5yDhJKg7M1dYHChiBFBo-Oy00KKCxFg:1794060666437&q=autom%C3%B2viles+santill%C3%A0n+direcci%C3%B3n&ludocid=511509971679966133&sa=X&sqi=2&ved=2ahUKEwjgyunlhPaXAxXur5UCHb5IHy0Q6BN6BAg9EAI" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="footer-map-link text-decoration-none" 
+                           title="Ver Automóviles Santillán en Google Maps">
+                            <i class="bi bi-geo-alt-fill text-danger fs-6"></i>
+                            <span class="small fw-semibold text-white">Bartolomé Mitre 86, L6333 Quemú Quemú, La Pampa</span>
+                            <span class="badge rounded-pill text-white ms-1" style="background: #e90b0f; font-size: 0.68rem; padding: 3px 7px;">
+                                <i class="bi bi-box-arrow-up-right me-1"></i>Google Maps
+                            </span>
+                        </a>
+                    </div>
+
                     <p class="small mb-0 text-white-50">© {% now "Y" %} Todos los derechos reservados.</p>
                 </div>
             </div>

@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Prefetch, Q
 from .models import Vehiculo, VehiculoImagen
 from .forms import VehiculoForm, PanelLoginForm
+from .utils import convertir_imagen_a_webp
 
 
 # ==========================================
@@ -174,12 +175,13 @@ def panel_vehiculo_crear(request):
         if form.is_valid():
             vehiculo = form.save()
 
-            # Guardar fotos (hasta un máximo de 20)
+            # Guardar fotos convertidas automáticamente a WebP (hasta un máximo de 20)
             contador_fotos = 0
             for i, archivo in enumerate(archivos[:20], start=1):
+                archivo_webp = convertir_imagen_a_webp(archivo)
                 VehiculoImagen.objects.create(
                     vehiculo=vehiculo,
-                    imagen=archivo,
+                    imagen=archivo_webp,
                     orden=i
                 )
                 contador_fotos += 1
@@ -221,12 +223,13 @@ def panel_vehiculo_editar(request, pk):
 
             if archivos and cupo_disponible > 0:
                 for i, archivo in enumerate(archivos[:cupo_disponible], start=fotos_actuales + 1):
+                    archivo_webp = convertir_imagen_a_webp(archivo)
                     VehiculoImagen.objects.create(
                         vehiculo=vehiculo,
-                        imagen=archivo,
+                        imagen=archivo_webp,
                         orden=i
                     )
-                messages.success(request, f"Vehículo actualizado y se añadieron {min(len(archivos), cupo_disponible)} nuevas fotos.")
+                messages.success(request, f"Vehículo actualizado y se añadieron {min(len(archivos), cupo_disponible)} nuevas fotos optimizadas en WebP.")
             elif archivos and cupo_disponible == 0:
                 messages.warning(request, "El vehículo ya alcanzó el límite máximo de 20 fotos. Elimina alguna para subir nuevas.")
             else:

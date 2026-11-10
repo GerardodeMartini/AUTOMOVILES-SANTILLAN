@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
+from .utils import convertir_imagen_a_webp
 
 
 class Vehiculo(models.Model):
@@ -121,4 +122,12 @@ class VehiculoImagen(models.Model):
 
     def __str__(self):
         return f"Foto #{self.id} de {self.vehiculo.marca} {self.vehiculo.modelo}"
+
+    def save(self, *args, **kwargs):
+        # Convertir automáticamente a WebP si no ha sido convertida aún
+        if self.imagen and not getattr(self.imagen, '_ya_convertido_webp', False):
+            nombre = getattr(self.imagen, 'name', '')
+            if not nombre.lower().endswith('.webp'):
+                self.imagen = convertir_imagen_a_webp(self.imagen)
+        super().save(*args, **kwargs)
 

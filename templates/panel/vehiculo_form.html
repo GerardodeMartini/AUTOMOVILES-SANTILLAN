@@ -2,6 +2,51 @@
 
 {% block title %}{{ titulo }} | Panel de Configuración{% endblock %}
 
+{% block extra_head %}
+<style>
+    .visibility-card {
+        border-radius: 12px;
+        padding: 1.25rem 1.25rem 1.1rem 1.25rem;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        transition: all 0.25s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .visibility-card:hover {
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .visibility-card.featured-card {
+        background-color: #fffdf5;
+        border-color: #fde68a;
+    }
+    .visibility-card.featured-card:hover {
+        border-color: #f59e0b;
+        box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+    }
+    .form-switch .form-check-input {
+        cursor: pointer;
+        width: 2.75em;
+        height: 1.4em;
+        margin-top: 0.15em;
+    }
+    .form-switch .form-check-input:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+    .featured-card .form-switch .form-check-input:checked {
+        background-color: #f59e0b;
+        border-color: #f59e0b;
+    }
+    .cursor-pointer {
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center mb-5">
     <div class="col-lg-10 col-xl-9">
@@ -94,23 +139,32 @@
                     </h5>
 
                     <div class="row g-3 mb-4">
+                        <!-- Contenedor 1: Disponible en catálogo -->
                         <div class="col-md-6">
-                            <div class="form-check form-switch p-3 bg-light rounded-3">
-                                {{ form.disponible }}
-                                <label class="form-check-label fw-semibold text-dark ms-2" for="{{ form.disponible.id_for_label }}">
-                                    Disponible para venta en catálogo
-                                </label>
-                                <small class="text-muted d-block ms-2 mt-1">Si está desmarcado, el vehículo se oculta de los clientes.</small>
+                            <div class="visibility-card">
+                                <div class="form-check form-switch mb-2">
+                                    {{ form.disponible }}
+                                    <label class="form-check-label fw-bold text-dark cursor-pointer ms-1" for="{{ form.disponible.id_for_label }}">
+                                        <i class="bi bi-eye-fill text-success me-1"></i> Disponible en catálogo
+                                    </label>
+                                </div>
+                                <small class="text-muted d-block ps-1">
+                                    Si está activo, el vehículo se muestra en el catálogo web. Si se desmarca, se oculta temporalmente de los clientes.
+                                </small>
                             </div>
                         </div>
+
+                        <!-- Contenedor 2: Destacado -->
                         <div class="col-md-6">
-                            <div class="form-check form-switch p-3 bg-warning bg-opacity-10 rounded-3 border border-warning">
-                                {{ form.destacado }}
-                                <label class="form-check-label fw-bold text-dark ms-2" for="{{ form.destacado.id_for_label }}">
-                                    <i class="bi bi-star-fill text-warning me-1"></i> Destacar este vehículo
-                                </label>
-                                <small class="text-muted d-block ms-2 mt-1">
-                                    Al marcar este casillero, el auto lucirá el cartel dorado de <strong>DESTACADO</strong> en el catálogo y podrá filtrarse en la categoría de Destacados.
+                            <div class="visibility-card featured-card">
+                                <div class="form-check form-switch mb-2">
+                                    {{ form.destacado }}
+                                    <label class="form-check-label fw-bold text-dark cursor-pointer ms-1" for="{{ form.destacado.id_for_label }}">
+                                        <i class="bi bi-star-fill text-warning me-1"></i> Destacar este vehículo
+                                    </label>
+                                </div>
+                                <small class="text-muted d-block ps-1">
+                                    Al marcar este casillero, el auto lucirá el cartel dorado de <strong>DESTACADO</strong> y se priorizará en los resultados del catálogo.
                                 </small>
                             </div>
                         </div>
@@ -142,7 +196,7 @@
                                 {% for img in imagenes %}
                                     <div class="col">
                                         <div class="card h-100 border shadow-sm position-relative overflow-hidden">
-                                            <img src="{{ img.imagen.url }}" alt="Foto {{ forloop.counter }}" style="height: 120px; object-fit: cover;">
+                                            <img src="{{ img.imagen.url }}" alt="Foto {{ forloop.counter }}" style="height: 120px; width: 100%; object-fit: cover; object-position: center;">
                                             <div class="card-body p-2 d-flex justify-content-between align-items-center bg-light">
                                                 <span class="badge bg-dark">#{{ forloop.counter }}</span>
                                                 <button type="submit" 
@@ -174,7 +228,7 @@
                         <input type="file" name="imagenes" id="inputImagenes" multiple accept="image/*" class="form-control form-control-lg">
                         <small class="text-muted d-block mt-2">
                             <i class="bi bi-info-circle me-1"></i>
-                            Puedes seleccionar múltiples archivos a la vez manteniendo presionada la tecla <strong>Ctrl</strong> (o seleccionando con el mouse). Formatos recomendados: JPG, PNG, WEBP.
+                            Puedes seleccionar múltiples archivos a la vez manteniendo presionada la tecla <strong>Ctrl</strong> (JPG, PNG, HEIC, WEBP, etc.). <strong>El sistema convertirá y comprimirá automáticamente todas las fotos al formato WebP ultraliviano</strong> para ahorrar espacio en el servidor y acelerar la navegación de los clientes.
                         </small>
                     </div>
 
