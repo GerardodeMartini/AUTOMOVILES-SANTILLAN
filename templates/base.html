@@ -583,6 +583,246 @@
         .footer-wa-btn:hover i {
             color: #ffffff !important;
         }
+
+        /* Redes Sociales en Footer */
+        .footer-social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            border: 1px solid rgba(114, 197, 214, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-social-icon.facebook:hover {
+            background-color: #1877f2;
+            border-color: #1877f2;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.5);
+        }
+
+        .footer-social-icon.instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            border-color: transparent;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(214, 36, 159, 0.5);
+        }
+
+        .footer-social-icon:hover i {
+            color: #ffffff !important;
+        }
+
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .social-btn-fb {
+            transition: all 0.25s ease;
+        }
+
+        .social-btn-fb:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(24, 119, 242, 0.5) !important;
+            color: #ffffff !important;
+        }
+
+        .social-btn-ig {
+            transition: all 0.25s ease;
+        }
+
+        .social-btn-ig:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(214, 36, 159, 0.5) !important;
+            color: #ffffff !important;
+        }
+
+        .social-icon-raw {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            line-height: 1;
+        }
+
+        .social-icon-raw:hover {
+            transform: scale(1.22);
+            opacity: 0.85;
+        }
+
+        /* Frase de Agradecimiento: exactamente dos renglones estirados */
+        .frase-confianza {
+            font-size: clamp(0.92rem, 1.12vw, 1.06rem);
+            line-height: 1.65;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 992px) {
+            .frase-confianza .frase-linea-1,
+            .frase-confianza .frase-linea-2 {
+                display: block;
+                white-space: nowrap;
+            }
+        }
+
+        /* Widget Posteos de Instagram */
+        .instagram-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .instagram-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .instagram-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .instagram-avatar-ring {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .instagram-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+            background: #01072c;
+            border: 2px solid #ffffff;
+        }
+
+        .instagram-img-container {
+            width: 100%;
+            height: 360px;
+            background-color: #01072c;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .instagram-card:hover .instagram-img-container img {
+            transform: scale(1.04);
+        }
+
+        .instagram-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px 6px;
+        }
+
+        .instagram-action-btn {
+            color: #1e293b;
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, color 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .instagram-action-btn:hover {
+            color: #e90b0f;
+            transform: scale(1.15);
+        }
+
+        .instagram-body {
+            padding: 0 14px 14px;
+            font-size: 0.86rem;
+            color: #1e293b;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .instagram-likes {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.84rem;
+            color: #0f172a;
+        }
+
+        .instagram-caption {
+            line-height: 1.45;
+            margin-bottom: 6px;
+        }
+
+        .instagram-caption strong {
+            color: #0f172a;
+        }
+
+        .instagram-hashtags {
+            color: #0284c7;
+            font-size: 0.8rem;
+            word-break: break-word;
+            margin-bottom: 6px;
+        }
+
+        .instagram-date {
+            color: #94a3b8;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: auto;
+            padding-top: 6px;
+        }
+
+        .instagram-badge-link {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #dc2743;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .instagram-badge-link:hover {
+            color: #bc1888;
+        }
     </style>
     {% block extra_head %}{% endblock %}
 </head>
@@ -658,7 +898,18 @@
                     <div class="mb-2">
                         <img src="{% static 'img/logo_redondo.png' %}" alt="Logo Automóviles Santillán" class="footer-round-logo">
                     </div>
-                    <p class="small mb-0 text-center" style="color: #b8bccd; max-width: 310px;">Venta de vehículos seleccionados, utilitarios y pick ups. Confiabilidad y trayectoria garantizada.</p>
+                    <p class="small mb-2 text-center" style="color: #b8bccd; max-width: 310px;">Venta de vehículos seleccionados, utilitarios y pick ups. Confiabilidad y trayectoria garantizada.</p>
+                    
+                    <!-- Seguinos en redes sociales -->
+                    <div class="d-flex align-items-center justify-content-center gap-2 mt-1">
+                        <span class="small fw-semibold text-white me-1" style="font-size: 0.85rem;">Seguinos:</span>
+                        <a href="https://www.facebook.com/automoviles_santillan" target="_blank" rel="noopener noreferrer" class="footer-social-icon facebook" title="Seguinos en Facebook">
+                            <i class="bi bi-facebook" style="color: #72c5d6;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="footer-social-icon instagram" title="Seguinos en Instagram (@automovilessantillan)">
+                            <i class="bi bi-instagram" style="color: #e90b0f;"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Columna 2: Botones de Inicio, Catálogo y WhatsApp de Pablo y Nacho -->

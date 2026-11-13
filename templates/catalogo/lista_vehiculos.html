@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Catálogo de Vehículos | Automóviles Santillán{% endblock %}
 
@@ -280,5 +281,432 @@
     </div>
 
 </div>
+
+<!-- SECCIÓN: CONFIARON EN NOSOTROS -->
+<section id="confianza" class="py-5" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%); border-top: 1px solid #e2e8f0;">
+    <div class="container" style="max-width: 1280px;">
+        
+        <!-- Encabezado de la sección -->
+        <div class="text-center mb-4">
+            <!-- Pre-título: Seguinos en nuestras redes con solo los logos -->
+            <div class="d-inline-flex align-items-center justify-content-center gap-2 mb-2">
+                <span class="fs-6 fw-semibold text-secondary text-uppercase" style="letter-spacing: 0.5px;">Seguinos en nuestras redes:</span>
+                
+                <a href="https://www.facebook.com/automoviles_santillan" target="_blank" rel="noopener noreferrer" class="social-icon-raw text-decoration-none d-inline-flex align-items-center px-1" title="Seguinos en Facebook" style="color: #1877f2; font-size: 1.5rem;">
+                    <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="social-icon-raw text-decoration-none d-inline-flex align-items-center px-1" title="Seguinos en Instagram" style="color: #e1306c; font-size: 1.5rem;">
+                    <i class="bi bi-instagram"></i>
+                </a>
+            </div>
+
+            <!-- Título principal -->
+            <h2 class="fw-bold text-dark display-6 mb-2" style="letter-spacing: -0.5px;">
+                Confiaron en nosotros
+            </h2>
+            <div style="width: 60px; height: 3px; background: #e90b0f; margin: 10px auto 16px; border-radius: 2px;"></div>
+            
+            <!-- Frase de agradecimiento estirada exactamente en dos renglones -->
+            <p class="text-secondary fst-italic mb-2 frase-confianza">
+                <span class="frase-linea-1">"Agradecemos profundamente a cada cliente que elige nuestros vehículos y deposita su confianza en nosotros.</span>
+                <span class="frase-linea-2">Nuestro compromiso de cada día es brindar siempre asesoramiento honesto, documentación al día y la mejor calidad en cada operación."</span>
+            </p>
+        </div>
+
+        <!-- Tarjetas de posteos de Instagram para las 6 entregas reales (sin contador de likes) -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center align-items-stretch mt-2">
+            
+            <!-- Posteo 1: Peugeot 408 (Dfar1RGJR3U) -->
+            <div class="col">
+                <article class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="instagram-avatar-ring">
+                                <img src="{% static 'img/logo_redondo.png' %}" alt="Automóviles Santillán" class="instagram-avatar">
+                            </div>
+                            <div>
+                                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="fw-bold text-dark text-decoration-none small d-block lh-1">
+                                    automovilessantillan
+                                </a>
+                                <span class="text-muted" style="font-size: 0.72rem;">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Quemú Quemú, La Pampa
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/p/Dfar1RGJR3U/" target="_blank" rel="noopener noreferrer" class="text-danger" title="Ver en Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/Dfar1RGJR3U/" target="_blank" rel="noopener noreferrer" class="instagram-img-container d-block" title="Ver entrega Peugeot 408">
+                        <img src="{% static 'img/ig_post_1.webp' %}" alt="Entrega Peugeot 408 - Automóviles Santillán" loading="lazy">
+                    </a>
+
+                    <div class="instagram-actions">
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="instagram-action-btn ig-like-btn" type="button" aria-label="Me gusta">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a href="https://www.instagram.com/p/Dfar1RGJR3U/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Comentar">
+                                <i class="bi bi-chat"></i>
+                            </a>
+                            <a href="https://wa.me/?text=Mir%C3%A1%20esta%20entrega%20en%20Autom%C3%B3viles%20Santill%C3%A1n%20https://www.instagram.com/p/Dfar1RGJR3U/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Compartir">
+                                <i class="bi bi-send"></i>
+                            </a>
+                        </div>
+                        <button class="instagram-action-btn me-0" type="button" aria-label="Guardar">
+                            <i class="bi bi-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="instagram-body">
+                        <div class="instagram-caption">
+                            <strong>automovilessantillan</strong> 🤝FELICITACIONES @mauroabadie81 Y FAMILIA POR ESTE PEUGEOT 408!!! GRACIAS POR ELEGIRNOS Y A DISFRUTARLO🥂
+                        </div>
+                        <div class="instagram-hashtags">
+                            #AutomovilesSantillan #Peugeot408 #Entregas #QuemúQuemú #LaPampa
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <span class="instagram-date">6 DE NOVIEMBRE</span>
+                            <a href="https://www.instagram.com/p/Dfar1RGJR3U/" target="_blank" rel="noopener noreferrer" class="instagram-badge-link">
+                                <span>Ver en Instagram</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Posteo 2: Ford Ranger (DfA_DJcO4th) -->
+            <div class="col">
+                <article class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="instagram-avatar-ring">
+                                <img src="{% static 'img/logo_redondo.png' %}" alt="Automóviles Santillán" class="instagram-avatar">
+                            </div>
+                            <div>
+                                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="fw-bold text-dark text-decoration-none small d-block lh-1">
+                                    automovilessantillan
+                                </a>
+                                <span class="text-muted" style="font-size: 0.72rem;">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Quemú Quemú, La Pampa
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/p/DfA_DJcO4th/" target="_blank" rel="noopener noreferrer" class="text-danger" title="Ver en Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/DfA_DJcO4th/" target="_blank" rel="noopener noreferrer" class="instagram-img-container d-block" title="Ver entrega Ford Ranger">
+                        <img src="{% static 'img/ig_post_2.webp' %}" alt="Entrega Ford Ranger - Automóviles Santillán" loading="lazy">
+                    </a>
+
+                    <div class="instagram-actions">
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="instagram-action-btn ig-like-btn" type="button" aria-label="Me gusta">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a href="https://www.instagram.com/p/DfA_DJcO4th/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Comentar">
+                                <i class="bi bi-chat"></i>
+                            </a>
+                            <a href="https://wa.me/?text=Mir%C3%A1%20esta%20entrega%20en%20Autom%C3%B3viles%20Santill%C3%A1n%20https://www.instagram.com/p/DfA_DJcO4th/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Compartir">
+                                <i class="bi bi-send"></i>
+                            </a>
+                        </div>
+                        <button class="instagram-action-btn me-0" type="button" aria-label="Guardar">
+                            <i class="bi bi-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="instagram-body">
+                        <div class="instagram-caption">
+                            <strong>automovilessantillan</strong> ENTREGA A @lisacastillo222 DE FORD RANGER!! ¡FELICITACIONES Y QUE LA DISFRUTES!🍾🥳
+                        </div>
+                        <div class="instagram-hashtags">
+                            #AutomovilesSantillan #FordRanger #PickUps #ConfiaronEnNosotros #QuemúQuemú
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <span class="instagram-date">27 DE OCTUBRE</span>
+                            <a href="https://www.instagram.com/p/DfA_DJcO4th/" target="_blank" rel="noopener noreferrer" class="instagram-badge-link">
+                                <span>Ver en Instagram</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Posteo 3: Volkswagen Gol Trend (De5cbzRu6Dt) -->
+            <div class="col">
+                <article class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="instagram-avatar-ring">
+                                <img src="{% static 'img/logo_redondo.png' %}" alt="Automóviles Santillán" class="instagram-avatar">
+                            </div>
+                            <div>
+                                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="fw-bold text-dark text-decoration-none small d-block lh-1">
+                                    automovilessantillan
+                                </a>
+                                <span class="text-muted" style="font-size: 0.72rem;">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Quemú Quemú, La Pampa
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/p/De5cbzRu6Dt/" target="_blank" rel="noopener noreferrer" class="text-danger" title="Ver en Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/De5cbzRu6Dt/" target="_blank" rel="noopener noreferrer" class="instagram-img-container d-block" title="Ver entrega Gol Trend">
+                        <img src="{% static 'img/ig_post_3.webp' %}" alt="Entrega Gol Trend - Automóviles Santillán" loading="lazy">
+                    </a>
+
+                    <div class="instagram-actions">
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="instagram-action-btn ig-like-btn" type="button" aria-label="Me gusta">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a href="https://www.instagram.com/p/De5cbzRu6Dt/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Comentar">
+                                <i class="bi bi-chat"></i>
+                            </a>
+                            <a href="https://wa.me/?text=Mir%C3%A1%20esta%20entrega%20en%20Autom%C3%B3viles%20Santill%C3%A1n%20https://www.instagram.com/p/De5cbzRu6Dt/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Compartir">
+                                <i class="bi bi-send"></i>
+                            </a>
+                        </div>
+                        <button class="instagram-action-btn me-0" type="button" aria-label="Guardar">
+                            <i class="bi bi-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="instagram-body">
+                        <div class="instagram-caption">
+                            <strong>automovilessantillan</strong> ¡ASI TERMINO NUESTRA SEMANA! 🚘🔑 ENTREGA DE VOLKSWAGEN GOL TREND A @mattymiiranda Y @antoo_castellarin QUE LO DISFRUTEN Y MUCHAS GRACIAS POR ELEGIRNOS🥂
+                        </div>
+                        <div class="instagram-hashtags">
+                            #AutomovilesSantillan #GolTrend #Entregas #UsadosSeleccionados #LaPampa
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <span class="instagram-date">24 DE OCTUBRE</span>
+                            <a href="https://www.instagram.com/p/De5cbzRu6Dt/" target="_blank" rel="noopener noreferrer" class="instagram-badge-link">
+                                <span>Ver en Instagram</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Posteo 4: Chevrolet S10 Work Track 0km (DexwNQHOQKa) -->
+            <div class="col">
+                <article class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="instagram-avatar-ring">
+                                <img src="{% static 'img/logo_redondo.png' %}" alt="Automóviles Santillán" class="instagram-avatar">
+                            </div>
+                            <div>
+                                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="fw-bold text-dark text-decoration-none small d-block lh-1">
+                                    automovilessantillan
+                                </a>
+                                <span class="text-muted" style="font-size: 0.72rem;">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Quemú Quemú, La Pampa
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/p/DexwNQHOQKa/" target="_blank" rel="noopener noreferrer" class="text-danger" title="Ver en Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/DexwNQHOQKa/" target="_blank" rel="noopener noreferrer" class="instagram-img-container d-block" title="Ver entrega Chevrolet S10 0km">
+                        <img src="{% static 'img/ig_post_4.webp' %}" alt="Entrega Chevrolet S10 0km - Automóviles Santillán" loading="lazy">
+                    </a>
+
+                    <div class="instagram-actions">
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="instagram-action-btn ig-like-btn" type="button" aria-label="Me gusta">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a href="https://www.instagram.com/p/DexwNQHOQKa/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Comentar">
+                                <i class="bi bi-chat"></i>
+                            </a>
+                            <a href="https://wa.me/?text=Mir%C3%A1%20esta%20entrega%20en%20Autom%C3%B3viles%20Santill%C3%A1n%20https://www.instagram.com/p/DexwNQHOQKa/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Compartir">
+                                <i class="bi bi-send"></i>
+                            </a>
+                        </div>
+                        <button class="instagram-action-btn me-0" type="button" aria-label="Guardar">
+                            <i class="bi bi-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="instagram-body">
+                        <div class="instagram-caption">
+                            <strong>automovilessantillan</strong> FELICITACIONES FAMILIA POR ESTA CHEVROLET S10 WORK TRACK 0KM!!! ¡A DISFRUTARLA!🥳 @juanjose.videla.779
+                        </div>
+                        <div class="instagram-hashtags">
+                            #AutomovilesSantillan #ChevroletS10 #0km #Trabajo #QuemúQuemú #LaPampa
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <span class="instagram-date">21 DE OCTUBRE</span>
+                            <a href="https://www.instagram.com/p/DexwNQHOQKa/" target="_blank" rel="noopener noreferrer" class="instagram-badge-link">
+                                <span>Ver en Instagram</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Posteo 5: Volkswagen Saveiro (DefmkiOJ_vk) -->
+            <div class="col">
+                <article class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="instagram-avatar-ring">
+                                <img src="{% static 'img/logo_redondo.png' %}" alt="Automóviles Santillán" class="instagram-avatar">
+                            </div>
+                            <div>
+                                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="fw-bold text-dark text-decoration-none small d-block lh-1">
+                                    automovilessantillan
+                                </a>
+                                <span class="text-muted" style="font-size: 0.72rem;">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Quemú Quemú, La Pampa
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/p/DefmkiOJ_vk/" target="_blank" rel="noopener noreferrer" class="text-danger" title="Ver en Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/DefmkiOJ_vk/" target="_blank" rel="noopener noreferrer" class="instagram-img-container d-block" title="Ver entrega Saveiro">
+                        <img src="{% static 'img/ig_post_5.webp' %}" alt="Entrega Volkswagen Saveiro - Automóviles Santillán" loading="lazy">
+                    </a>
+
+                    <div class="instagram-actions">
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="instagram-action-btn ig-like-btn" type="button" aria-label="Me gusta">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a href="https://www.instagram.com/p/DefmkiOJ_vk/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Comentar">
+                                <i class="bi bi-chat"></i>
+                            </a>
+                            <a href="https://wa.me/?text=Mir%C3%A1%20esta%20entrega%20en%20Autom%C3%B3viles%20Santill%C3%A1n%20https://www.instagram.com/p/DefmkiOJ_vk/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Compartir">
+                                <i class="bi bi-send"></i>
+                            </a>
+                        </div>
+                        <button class="instagram-action-btn me-0" type="button" aria-label="Guardar">
+                            <i class="bi bi-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="instagram-body">
+                        <div class="instagram-caption">
+                            <strong>automovilessantillan</strong> ENTREGA DE VOLKSWAGEN SAVEIRO A @bautistaarnaudo DE ARATA. FELICITACIONES Y QUE LA DISFRUTES‼️
+                        </div>
+                        <div class="instagram-hashtags">
+                            #AutomovilesSantillan #VWSaveiro #Utilitarios #Arata #LaPampa #Entregas
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <span class="instagram-date">14 DE OCTUBRE</span>
+                            <a href="https://www.instagram.com/p/DefmkiOJ_vk/" target="_blank" rel="noopener noreferrer" class="instagram-badge-link">
+                                <span>Ver en Instagram</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Posteo 6: Chevrolet Onix 0km (Dec7cs7OUT3) -->
+            <div class="col">
+                <article class="instagram-card">
+                    <div class="instagram-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="instagram-avatar-ring">
+                                <img src="{% static 'img/logo_redondo.png' %}" alt="Automóviles Santillán" class="instagram-avatar">
+                            </div>
+                            <div>
+                                <a href="https://www.instagram.com/automovilessantillan/" target="_blank" rel="noopener noreferrer" class="fw-bold text-dark text-decoration-none small d-block lh-1">
+                                    automovilessantillan
+                                </a>
+                                <span class="text-muted" style="font-size: 0.72rem;">
+                                    <i class="bi bi-geo-alt-fill text-danger"></i> Quemú Quemú, La Pampa
+                                </span>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/p/Dec7cs7OUT3/" target="_blank" rel="noopener noreferrer" class="text-danger" title="Ver en Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                    </div>
+
+                    <a href="https://www.instagram.com/p/Dec7cs7OUT3/" target="_blank" rel="noopener noreferrer" class="instagram-img-container d-block" title="Ver entrega Chevrolet Onix 0km">
+                        <img src="{% static 'img/ig_post_6.webp' %}" alt="Entrega Chevrolet Onix 0km - Automóviles Santillán" loading="lazy">
+                    </a>
+
+                    <div class="instagram-actions">
+                        <div class="d-flex align-items-center gap-3">
+                            <button class="instagram-action-btn ig-like-btn" type="button" aria-label="Me gusta">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a href="https://www.instagram.com/p/Dec7cs7OUT3/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Comentar">
+                                <i class="bi bi-chat"></i>
+                            </a>
+                            <a href="https://wa.me/?text=Mir%C3%A1%20esta%20entrega%20en%20Autom%C3%B3viles%20Santill%C3%A1n%20https://www.instagram.com/p/Dec7cs7OUT3/" target="_blank" rel="noopener noreferrer" class="instagram-action-btn" aria-label="Compartir">
+                                <i class="bi bi-send"></i>
+                            </a>
+                        </div>
+                        <button class="instagram-action-btn me-0" type="button" aria-label="Guardar">
+                            <i class="bi bi-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="instagram-body">
+                        <div class="instagram-caption">
+                            <strong>automovilessantillan</strong> ¡NUEVA ENTREGA! FELICITACIONES @micaaa_diaaaz POR ESTE CHEVROLET ONIX 0KM!! QUE LO DISFRUTES Y MUCHAS GRACIAS POR ELEGIRNOS🥂
+                        </div>
+                        <div class="instagram-hashtags">
+                            #AutomovilesSantillan #ChevroletOnix #0km #NuevosIngresos #QuemúQuemú
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <span class="instagram-date">13 DE OCTUBRE</span>
+                            <a href="https://www.instagram.com/p/Dec7cs7OUT3/" target="_blank" rel="noopener noreferrer" class="instagram-badge-link">
+                                <span>Ver en Instagram</span>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Interacción visual con el botón Me Gusta (tildar corazón sin números)
+        document.querySelectorAll('.ig-like-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('bi-heart')) {
+                    icon.classList.remove('bi-heart');
+                    icon.classList.add('bi-heart-fill', 'text-danger');
+                } else {
+                    icon.classList.remove('bi-heart-fill', 'text-danger');
+                    icon.classList.add('bi-heart');
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
 
